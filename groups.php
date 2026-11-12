@@ -25,7 +25,13 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(local_flexiset_config());
+// A normal install finds config.php next to public/ (5.1+) or the Moodle root (5.0).
+// A symlinked checkout sits outside that tree, so the last branch searches from the web root.
+require_once(is_file(__DIR__ . '/../../../config.php')
+    ? __DIR__ . '/../../../config.php'
+    : (is_file(__DIR__ . '/../../config.php')
+        ? __DIR__ . '/../../config.php'
+        : local_flexiset_config()));
 
 use local_flexiset\api;
 use local_flexiset\form\group_form;
@@ -88,7 +94,11 @@ if ($add || $editing) {
     if (!$choices) {
         redirect($base, get_string('nosections', 'local_flexiset'), null, \core\output\notification::NOTIFY_WARNING);
     }
-    $formurl = new moodle_url('/local/flexiset/groups.php', $editing ? ['cmid' => $cm->id, 'edit' => $editing->id] : ['cmid' => $cm->id, 'add' => 1]);
+    $formparams = ['cmid' => $cm->id, 'add' => 1];
+    if ($editing) {
+        $formparams = ['cmid' => $cm->id, 'edit' => $editing->id];
+    }
+    $formurl = new moodle_url('/local/flexiset/groups.php', $formparams);
     $form = new group_form($formurl, [
         'quizid' => (int) $quiz->id,
         'sections' => $choices,

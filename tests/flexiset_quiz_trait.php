@@ -245,6 +245,8 @@ trait flexiset_quiz_trait {
     }
 
     /**
+     * Read quiz_attempts.sumgrades for one attempt.
+     *
      * @param int $attemptid
      * @return float|null
      */

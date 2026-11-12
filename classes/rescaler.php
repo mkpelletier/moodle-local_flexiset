@@ -367,6 +367,8 @@ class rescaler {
     }
 
     /**
+     * Build the figures stored for one attempt.
+     *
      * @param string $action
      * @param float|null $raw
      * @param float|null $appmax
@@ -385,6 +387,8 @@ class rescaler {
     }
 
     /**
+     * Insert or update the stored figures for one attempt.
+     *
      * @param int $attemptid
      * @param array $plan
      */
@@ -408,6 +412,8 @@ class rescaler {
     }
 
     /**
+     * Whether two grade values are close enough to leave unchanged.
+     *
      * @param float|null $desired
      * @param mixed $current
      * @return bool

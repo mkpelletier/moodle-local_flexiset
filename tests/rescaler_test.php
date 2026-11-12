@@ -16,6 +16,8 @@
 
 namespace local_flexiset;
 
+defined('MOODLE_INTERNAL') || die();
+
 require_once(__DIR__ . '/flexiset_quiz_trait.php');
 
 use local_flexiset\api;
