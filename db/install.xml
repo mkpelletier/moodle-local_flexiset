@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/flexiset/db" VERSION="2026101600" COMMENT="XMLDB file for local_flexiset"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="local_flexiset_quiz" COMMENT="FlexiSet switch and shortfall policy for one quiz.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="quizid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Quiz id. Not a foreign key, so deleting the quiz cannot be blocked by this row."/>
+        <FIELD NAME="enabled" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="shortfall" TYPE="char" LENGTH="10" NOTNULL="true" DEFAULT="zero" SEQUENCE="false" COMMENT="zero or core"/>
+        <FIELD NAME="invalid" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="A group does not match the live quiz structure."/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="quizid_u" UNIQUE="true" FIELDS="quizid"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="local_flexiset_group" COMMENT="One optional question group, bound to a quiz section.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="quizid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sectionid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="quiz_sections.id. Not a foreign key, so a section can be deleted."/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Student-facing name. Null uses the section heading."/>
+        <FIELD NAME="mode" TYPE="char" LENGTH="10" NOTNULL="true" DEFAULT="best" SEQUENCE="false" COMMENT="best, first, or all"/>
+        <FIELD NAME="minanswer" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="N, the minimum number of answers."/>
+        <FIELD NAME="maxcount" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="K. Null means K = N, except mode all where null counts every answered slot."/>
+        <FIELD NAME="invalid" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="quiz_section_u" UNIQUE="true" FIELDS="quizid, sectionid"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="local_flexiset_result" COMMENT="Latest FlexiSet figures for one finished attempt. Not included in backups.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="attemptid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="raw" TYPE="number" LENGTH="10" NOTNULL="false" SEQUENCE="false" DECIMALS="5" COMMENT="Marks counted by FlexiSet."/>
+        <FIELD NAME="appmax" TYPE="number" LENGTH="10" NOTNULL="false" SEQUENCE="false" DECIMALS="5" COMMENT="Maximum of the counted slots."/>
+        <FIELD NAME="coretotal" TYPE="number" LENGTH="10" NOTNULL="false" SEQUENCE="false" DECIMALS="5" COMMENT="Question-usage total before the rewrite."/>
+        <FIELD NAME="sumgrades" TYPE="number" LENGTH="10" NOTNULL="false" SEQUENCE="false" DECIMALS="5" COMMENT="Value written to quiz_attempts.sumgrades."/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="attemptid_u" UNIQUE="true" FIELDS="attemptid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>
