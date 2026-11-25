@@ -37,6 +37,7 @@ $string['errormode'] = 'Choose which answers count.';
 $string['errornrange'] = 'The minimum must be from 1 to {$a}, the number of questions in the section.';
 $string['errorsection'] = 'Choose a section.';
 $string['errorsectionused'] = 'That section already has a group.';
+$string['flexiset:manage'] = 'Manage FlexiSet question groups';
 $string['groupname'] = 'Name';
 $string['groupname_help'] = 'Shown to students instead of the section heading. Leave this blank to use the heading.';
 $string['groups'] = 'Question groups';
