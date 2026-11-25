@@ -18,6 +18,7 @@ namespace local_flexiset;
 
 use local_flexiset\api;
 use local_flexiset\groups;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Backup and restore of FlexiSet settings and section groups.
@@ -25,9 +26,9 @@ use local_flexiset\groups;
  * @package    local_flexiset
  * @copyright  2026 South African Theological Seminary (mathieu@sats.ac.za)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @covers     \backup_local_flexiset_plugin
- * @covers     \restore_local_flexiset_plugin
  */
+#[CoversClass(\backup_local_flexiset_plugin::class)]
+#[CoversClass(\restore_local_flexiset_plugin::class)]
 final class backup_test extends \advanced_testcase {
     use \mod_quiz\tests\question_helper_test_trait;
 

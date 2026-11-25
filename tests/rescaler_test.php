@@ -25,6 +25,7 @@ use local_flexiset\groups;
 use local_flexiset\rescaler;
 use mod_quiz\quiz_attempt;
 use mod_quiz\quiz_settings;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * FlexiSet grade formula, fallbacks, and the gradebook write.
@@ -34,9 +35,9 @@ use mod_quiz\quiz_settings;
  * @package    local_flexiset
  * @copyright  2026 South African Theological Seminary (mathieu@sats.ac.za)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @covers     \local_flexiset\rescaler
- * @covers     \local_flexiset\groups
  */
+#[CoversClass(rescaler::class)]
+#[CoversClass(groups::class)]
 final class rescaler_test extends \advanced_testcase {
     use flexiset_quiz_trait;
 
