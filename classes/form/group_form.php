@@ -26,6 +26,10 @@ namespace local_flexiset\form;
 
 use local_flexiset\groups;
 
+defined('MOODLE_INTERNAL') || die();
+
+require_once($CFG->libdir . '/formslib.php');
+
 /**
  * Moodle form for one section group.
  */

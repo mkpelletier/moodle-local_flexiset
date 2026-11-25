@@ -29,7 +29,7 @@ use mod_quiz\quiz_settings;
 /**
  * FlexiSet grade formula, fallbacks, and the gradebook write.
  *
- * Run on Moodle 5.3. Moodle 5.1 and 5.2 are in the supported range and are not executed here.
+ * Run on Moodle 5.3. Moodle 5.0, 5.1 and 5.2 are in the supported range and are not executed here.
  *
  * @package    local_flexiset
  * @copyright  2026 South African Theological Seminary (mathieu@sats.ac.za)

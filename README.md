@@ -4,7 +4,7 @@ FlexiSet grades a quiz from a required core plus one or more optional sections. 
 
 This plugin owns the groups, the grade rewrite, and the Question groups page. The companion access rule, [`quizaccess_flexiset`](../moodle-quizaccessrule_flexiset/README.md), owns the on/off switch on the quiz form and the text students see. Each plugin is useless without the other. `quizaccess_flexiset` declares a dependency on this one.
 
-Release 1.0.0 (beta). Version `2026101600`. Requires Moodle 5.1.0 (`2025100600`) and supports 5.1 through 5.3. GPL v3 or later. Copyright 2026 South African Theological Seminary.
+Release 1.0.1 (beta). Version `2026112500`. Requires Moodle 5.0.0 (`2025041400`) and supports 5.0 through 5.3. GPL v3 or later. Copyright 2026 South African Theological Seminary.
 
 ## Install
 
